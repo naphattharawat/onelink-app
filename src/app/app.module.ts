@@ -1,3 +1,4 @@
+import { AlertService } from './help/alert.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -9,12 +10,22 @@ import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { QRCodeModule } from 'angularx-qrcode';
+import { DragDropDirective } from './help/drag-drop.directive';
+import { environment } from 'src/environments/environment';
+import { HttpClientModule } from '@angular/common/http';
+import { ShorturlComponent } from './shorturl/shorturl.component';
+import { QrcodeComponent } from './qrcode/qrcode.component';
+import { ApiService } from './help/api.service';
+import { UploadService } from './help/upload.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
-    HomeComponent
+    HomeComponent,
+    DragDropDirective,
+    ShorturlComponent,
+    QrcodeComponent
   ],
   imports: [
     BrowserModule,
@@ -22,9 +33,19 @@ import { QRCodeModule } from 'angularx-qrcode';
     ClarityModule,
     BrowserAnimationsModule,
     FormsModule,
-    QRCodeModule
+    QRCodeModule,
+    HttpClientModule
   ],
-  providers: [],
+  exports: [
+    ShorturlComponent,
+    QrcodeComponent
+  ],
+  providers: [
+    { provide: 'API_URL', useValue: environment.apiUrl },
+    ApiService,
+    UploadService,
+    AlertService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

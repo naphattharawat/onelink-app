@@ -6,58 +6,45 @@
           <clr-tab>
             <button clrTabLink>SHORT URL</button>
             <clr-tab-content *clrIfActive>
-              <br>
-              <div class="clr-row" style="line-height: 3rem;">
-                <div class="clr-col-md-1"><img src="/assets/icon/browser.png" style="width:100%" alt=""> </div>
-                <div class="clr-col-md-11">
-                  <input type="text" class="el-input__inner"
-                    placeholder="https://example.com - URL for any other device/browser*">
-                </div>
-                <div class="clr-col-md-1"> <img src="/assets/icon/apple-logo.png" style="width:100%" alt=""></div>
-                <div class="clr-col-md-11">
-                  <input type="text" [ngClass]="{'input-blank': urlIOS.length==0}" [(ngModel)]="urlIOS"
-                    class="el-input__inner" placeholder="URL to your app on AppStore(iOS)">
-                </div>
-                <div class="clr-col-md-1"> <img src="/assets/icon/apple-logo.png" style="width:100%" alt=""></div>
-                <div class="clr-col-md-11">
-                  <input type="text" [ngClass]="{'input-blank': urlIOSIpad.length==0}" [(ngModel)]="urlIOSIpad"
-                    class="el-input__inner" placeholder="URL to your iPad only version on AppStore(iOS)">
-                </div>
-                <div class="clr-col-md-1"> <img src="/assets/icon/android-logo.png" style="width:100%" alt=""></div>
-                <div class="clr-col-md-11">
-                  <input type="text" [ngClass]="{'input-blank': urlAndroid.length==0}" [(ngModel)]="urlAndroid"
-                    class="el-input__inner" placeholder="URL to your app for Android Google Play">
-                </div>
-                <div class="clr-col-md-1"> <img src="/assets/icon/windows.png" style="width:100%" alt=""></div>
-                <div class="clr-col-md-11">
-                  <input type="text" [ngClass]="{'input-blank': urlMicrosoft.length==0}" [(ngModel)]="urlMicrosoft"
-                    class="el-input__inner" placeholder="URL to your app on Microsoft Store">
-                </div>
-                <div class="clr-col-md-12"><button class="btn btn-success">Save</button></div>
-              </div>
-              <div class="card-block">
-                <div class="card-title">
-                  SHORT URL: {{shortUrl}}
-                  <!-- <qrcode [qrdata]="url || 'https://example.com'" [width]="256" [errorCorrectionLevel]="'H'" [elementType]="'img'"></qrcode> -->
-                </div>
-              </div>
+              <app-shorturl></app-shorturl>
+              
             </clr-tab-content>
           </clr-tab>
 
           <clr-tab>
             <button clrTabLink>QRCode</button>
             <clr-tab-content *clrIfActive>
+           <app-qrcode></app-qrcode>
+            </clr-tab-content>
+          </clr-tab>
+          <clr-tab>
+            <button clrTabLink>Upload Image</button>
+            <clr-tab-content *clrIfActive>
               <div class="clr-row">
-                <div class="clr-col-md-10">
-                  <input type="text" class="el-input__inner" [(ngModel)]="url" placeholder="https://example.com">
+                <div class="clr-col-md-12">
+                  <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop
+                    (onFileDropped)="uploadFile($event)">
+                    <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
+                  </div>
+                  <div class="files-list" *ngFor="let file of files;let i= index">
+                    <p> {{ file }} </p>
+                    <button class="delete-file" (click)="deleteAttachment(i)">
+                      <img src="../../assets/Recycle_Bin_Full.png">
+                    </button>
+                  </div>
                 </div>
-                <div class="clr-col-md-2"><button class="btn btn-success">Save</button></div>
+                <div class="clr-col-md-12">
+                  <button class="btn btn-primary btn-outline btn-block" (click)="onClickUpload()">
+                    อัพโหลด
+                  </button>
+                </div>
+                <!-- <div class="clr-col-md-2"><button class="btn btn-success">Save</button></div> -->
               </div>
               <div class="card-block">
-                <div class="card-title">
+                <!-- <div class="card-title">
                   <qrcode [qrdata]="url || 'https://example.com'" [width]="256" [errorCorrectionLevel]="'H'"
                     [elementType]="'img'"></qrcode>
-                </div>
+                </div> -->
               </div>
             </clr-tab-content>
           </clr-tab>
