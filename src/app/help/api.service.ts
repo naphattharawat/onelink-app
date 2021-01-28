@@ -11,8 +11,8 @@ export class ApiService {
     @Inject('API_URL') private apiUrl: string
   ) { }
 
-  async saveShortUrl(details) {
+  async saveShortUrl(type, details) {
     const url = `${this.apiUrl}`;
-    return await this.http.post(url, { details }).toPromise();
+    return await this.http.post(url, { details, type }).toPromise();
   }
 }

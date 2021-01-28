@@ -1,0 +1,36 @@
+<div class="clr-row">
+  <div class="clr-col-md-12">
+    <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
+      <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
+    </div>
+    <div class="files-list" *ngFor="let file of files;let i= index">
+      <p> {{ file.name }} </p>
+      <button class="delete-file" (click)="deleteAttachment()">
+        <img src="../../assets/Recycle_Bin_Full.png">
+      </button>
+    </div>
+  </div>
+  <div class="clr-col-md-12">
+    <button class="btn btn-primary btn-outline btn-block"  [disabled]="!isFile" (click)="onClickUpload()">
+      อัพโหลด
+    </button>
+  </div>
+  <!-- <div class="clr-col-md-2"><button class="btn btn-success">Save</button></div> -->
+</div>
+<div class="card-block" *ngIf="url">
+  <div class="card-title">
+    <div class="clr-row">
+      <div class="clr-col-md-3">Short URL:</div>
+      <div class="clr-col-md-9"><input class="el-input__inner pointer" type="text" (click)="onClickCopy(url.shortUrl)" [value]="url.shortUrl" readonly> </div>
+
+      <div class="clr-col-md-3">Full URL:</div>
+      <div class="clr-col-md-9"><input class="el-input__inner pointer" type="text" (click)="onClickCopy(url.url)" [value]="url.url" readonly></div>
+
+      <div class="clr-col-md-3">Preview URL:</div>
+      <div class="clr-col-md-9"><input class="el-input__inner pointer" type="text" (click)="onClickCopy(url.urlPreview)" [value]="url.urlPreview" readonly></div>
+
+      <div class="clr-col-md-3">Thumbnail URL:</div>
+      <div class="clr-col-md-9"><input class="el-input__inner pointer" type="text" (click)="onClickCopy(url.urlThumbnail)" [value]="url.urlThumbnail" readonly></div>
+    </div>
+  </div>
+</div>

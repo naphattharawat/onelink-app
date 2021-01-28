@@ -14,8 +14,3 @@
     transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
     width: 100%;
 }
-
-.input-blank {
-    background-color: rgb(245, 237, 237);
-    border: 1px solid black;
-}

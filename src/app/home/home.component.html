@@ -20,32 +20,7 @@
           <clr-tab>
             <button clrTabLink>Upload Image</button>
             <clr-tab-content *clrIfActive>
-              <div class="clr-row">
-                <div class="clr-col-md-12">
-                  <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop
-                    (onFileDropped)="uploadFile($event)">
-                    <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
-                  </div>
-                  <div class="files-list" *ngFor="let file of files;let i= index">
-                    <p> {{ file }} </p>
-                    <!-- <button class="delete-file" (click)="deleteAttachment(i)">
-                      <img src="../../assets/Recycle_Bin_Full.png">
-                    </button> -->
-                  </div>
-                </div>
-                <div class="clr-col-md-12">
-                  <button class="btn btn-primary btn-outline btn-block" (click)="onClickUpload()">
-                    อัพโหลด
-                  </button>
-                </div>
-                <!-- <div class="clr-col-md-2"><button class="btn btn-success">Save</button></div> -->
-              </div>
-              <div class="card-block">
-                <!-- <div class="card-title">
-                  <qrcode [qrdata]="url || 'https://example.com'" [width]="256" [errorCorrectionLevel]="'H'"
-                    [elementType]="'img'"></qrcode>
-                </div> -->
-              </div>
+              <app-upload-image></app-upload-image>
             </clr-tab-content>
           </clr-tab>
 

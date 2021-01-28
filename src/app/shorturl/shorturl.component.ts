@@ -35,7 +35,7 @@ export class ShorturlComponent implements OnInit {
         type: 'WEB',
         url: this.url
       }];
-      const rs: any = await this.apiService.saveShortUrl(data);
+      const rs: any = await this.apiService.saveShortUrl('URL', data);
       if (rs.ok) {
         this.shortUrl = rs.rows.url;
         this.oldUrl = this.url;
@@ -61,7 +61,6 @@ export class ShorturlComponent implements OnInit {
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
-
     this.alertService.alert('คัดลอกเรียบร้อย');
   }
 

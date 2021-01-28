@@ -1,9 +1,9 @@
-
 <br>
 <div class="clr-row" style="line-height: 3rem;">
   <div class="clr-col-md-1"><img src="/assets/icon/browser.png" style="width:100%" alt=""> </div>
   <div class="clr-col-md-11">
-    <input type="text" class="el-input__inner" placeholder="https://example.com - URL for any other device/browser*">
+    <input type="text" class="el-input__inner" [(ngModel)]="url"
+      placeholder="https://example.com - URL for any other device/browser*">
   </div>
   <div class="clr-col-md-1"> <img src="/assets/icon/apple-logo.png" style="width:100%" alt=""></div>
   <div class="clr-col-md-11">
@@ -25,12 +25,14 @@
     <input type="text" [ngClass]="{'input-blank': urlMicrosoft.length==0}" [(ngModel)]="urlMicrosoft"
       class="el-input__inner" placeholder="URL to your app on Microsoft Store">
   </div>
-  <div class="clr-col-md-12"><button class="btn btn-success">Save</button></div>
+  <div class="clr-col-md-12"><button class="btn btn-success btn-block" [disabled]="isSave" (click)="onClickSave()">Save</button></div>
 </div>
 <div class="card-block">
-    <div class="card-title">
-      <qrcode [qrdata]="url || 'https://example.com'" [width]="256" [errorCorrectionLevel]="'H'"
-        [elementType]="'img'"></qrcode>
-    </div>
+  <div class="card-title">
+    <span style="font-size: 0.6rem;"> URL: {{urlOld}}</span>
+    <br><br>
+    <qrcode *ngIf="shortUrl" [qrdata]="shortUrl" [width]="256" [errorCorrectionLevel]="'H'" [elementType]="'img'">
+    </qrcode>
+    <span style="font-size:1rem"  class="pointer" (click)="onClickCopy()">{{shortUrl}}</span>
   </div>
-
+</div>

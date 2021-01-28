@@ -11,11 +11,16 @@ export class UploadService {
     private http: HttpClient,
     @Inject('API_URL') private apiUrl: string
   ) { }
-
-  public upload(  files: Set<File> ): { [key: string]: { progress: Observable<number> } } {
+  async upload2(files, name) {
+    const formdata = new FormData();
+    formdata.append('files', files, name);
+    const url = `${this.apiUrl}/uploads`;
+    return await this.http.post(url, formdata).toPromise();
+  }
+  public upload(files: Set<File>): { [key: string]: { progress: Observable<number> } } {
     // this will be the our resulting map
     const status: { [key: string]: { progress: Observable<number> } } = {};
-    
+
     const url = `${this.apiUrl}/uploads`;
     files.forEach(file => {
       // create a new multipart-form for every file

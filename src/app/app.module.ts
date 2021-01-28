@@ -17,6 +17,7 @@ import { ShorturlComponent } from './shorturl/shorturl.component';
 import { QrcodeComponent } from './qrcode/qrcode.component';
 import { ApiService } from './help/api.service';
 import { UploadService } from './help/upload.service';
+import { UploadImageComponent } from './upload-image/upload-image.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UploadService } from './help/upload.service';
     HomeComponent,
     DragDropDirective,
     ShorturlComponent,
-    QrcodeComponent
+    QrcodeComponent,
+    UploadImageComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { UploadService } from './help/upload.service';
   ],
   exports: [
     ShorturlComponent,
-    QrcodeComponent
+    QrcodeComponent,
+    UploadImageComponent
   ],
   providers: [
     { provide: 'API_URL', useValue: environment.apiUrl },
