@@ -38,12 +38,12 @@ export class UploadImageComponent implements OnInit {
   // }
 
 
-  uploadFile(e) {
+  uploadFile(files) {
     try {
-      console.log(e);
+      // console.log(e);
       
       this.isFile = true;
-      const files: { [key: string]: File } = this.file.nativeElement.files;
+      // const files: { [key: string]: File } = this.file.nativeElement.files;
       // this.files = files;
       this.selectedFile = files[0];
       this.name = this.selectedFile.name;
