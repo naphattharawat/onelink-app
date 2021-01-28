@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   uploadPercent; //Resumable File Upload Variable
 
   progress: any;
-  // files: any = [];
+  files: any = [];
   constructor(
     private uploadService: UploadService,
     private http: HttpClient
@@ -66,6 +66,7 @@ export class HomeComponent implements OnInit {
   // deleteAttachment(index) {
   //   this.files.splice(index, 1);
   // }
+
   onClickUpload() {
     //checks file id exists or not, checks on name and last modified
     let fileId = `${this.selectedFile.name}-${this.selectedFile.lastModified}`;
