@@ -65,8 +65,6 @@ export class ShorturlComponent implements OnInit {
   }
 
   onKey(e) {
-    console.log(e.keyCode);
-
     if (e.keyCode === 13) {
       this.onClickSave();
     }
