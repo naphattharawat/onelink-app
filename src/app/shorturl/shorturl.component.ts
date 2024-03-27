@@ -27,7 +27,6 @@ export class ShorturlComponent implements OnInit {
 
   async onClickSave() {
     try {
-
       if(!this.url.includes('http://', 0)){
         if (!this.url.includes('https://', 0)) {
           this.url = 'https://' + this.url;
@@ -39,37 +38,37 @@ export class ShorturlComponent implements OnInit {
         url: this.url
       }];
       const rs: any = await this.apiService.saveShortUrl('URL', data);
-      if (rs.ok)
+      if (rs.ok) {
         this.shortUrl = rs.rows.url;
-      this.oldUrl = this.url;
-      this.url = '';
-    }
+        this.oldUrl = this.url;
+        this.url = '';
+      }
       console.log(rs);
-    this.isSave = false;
-  } catch(error) {
-    this.isSave = false;
-    this.alertService.error(error);
+      this.isSave = false;
+    } catch (error) {
+      this.isSave = false;
+      this.alertService.error(error);
+    }
   }
-}
 
-onClickCopy() {
-  const selBox = document.createElement('textarea');
-  selBox.style.position = 'fixed';
-  selBox.style.left = '0';
-  selBox.style.top = '0';
-  selBox.style.opacity = '0';
-  selBox.value = this.shortUrl;
-  document.body.appendChild(selBox);
-  selBox.focus();
-  selBox.select();
-  document.execCommand('copy');
-  document.body.removeChild(selBox);
-  this.alertService.alert('คัดลอกเรียบร้อย');
-}
-
-onKey(e) {
-  if (e.keyCode === 13) {
-    this.onClickSave();
+  onClickCopy() {
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = this.shortUrl;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+    this.alertService.alert('คัดลอกเรียบร้อย');
   }
-}
+
+  onKey(e) {
+    if (e.keyCode === 13) {
+      this.onClickSave();
+    }
+  }
 }
