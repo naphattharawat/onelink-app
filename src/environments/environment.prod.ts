@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://onelink.moph.go.th'
+  apiUrl: 'https://onelink.moph.go.th'
 };
